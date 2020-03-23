@@ -1,0 +1,10 @@
+.login {
+    color: red;
+    cursor: pointer;
+   .ttspan {
+     color: blue;
+   }
+    &:hover {
+      font-size: 40px;
+    }
+}
