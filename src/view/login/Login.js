@@ -20,7 +20,7 @@ class Login extends Component {
         return (
             <div className={LoginStyle.login} >
                 这的登录页
-                <Button onClick={this.login}  type="primary">登录</Button>
+                <Button onClick={this.login}  type="primary">登录1</Button>
             </div>
         );
     }
