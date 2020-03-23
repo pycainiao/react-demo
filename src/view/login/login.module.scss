@@ -1,3 +1,30 @@
-.login {
-
+.login-main {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    .form-title {
+      font-size: 20px;
+      color: #fff;
+      letter-spacing: 10px;
+      text-align: center;
+      height: 40px;
+      line-height: 40px;
+    }
+    .login-main-form {
+        position: absolute;
+        top:20vh;
+        left: 50%;
+        transform: translateX(-50%);
+        //transform: translate(-50%,-50%);
+        background: #55648d;
+        border-radius: 6px;
+      overflow: hidden;
+    }
+    .form-main {
+      border-top: 2px solid #cccccc;
+      .code-span {
+         cursor: pointer;
+          color: rebeccapurple;
+      }
+    }
 }
