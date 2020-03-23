@@ -6,7 +6,6 @@ class Login extends Component {
     constructor(props) {
         super(props);
         this.state = {};
-        this.myRef = React.createRef();
     }
     // componentDidMount() {
     //     console.log(this.props, 'props')
@@ -21,7 +20,7 @@ class Login extends Component {
         return (
             <div className={LoginStyle.login} >
                 这的登录页
-                <Button ref={this.myRef} onClick={this.login}  type="primary">登录</Button>
+                <Button onClick={this.login}  type="primary">登录</Button>
             </div>
         );
     }
