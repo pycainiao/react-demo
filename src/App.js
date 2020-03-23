@@ -1,18 +1,25 @@
 import React from 'react';
-// import logo from './logo.svg';
 import './App.css';
-import { Button } from 'antd';
-import Login from './view/Login';
+import mainRouterList from './routers/mainRouterList';
+import {HashRouter,Switch,Route, Redirect} from 'react-router-dom';
+
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        hello ,world
-          <Button type="primary">Button</Button>
-          <Login></Login>
-      </header>
-    </div>
-  );
+    let token = window.sessionStorage.getItem('token') || "";
+    return (
+            <HashRouter>
+                <Switch>
+                    {
+                        mainRouterList.map((item,index) => {
+                            return <Route key={index} path={item.path} exact={item.isExact} render={ (props) => {
+                                return  !item.isAuth ? <item.component {...props}/> : (token ? <item.component {...props}/> :<Redirect to='/login'/> )
+                            }
+                            }/>
+                        })
+
+                    }
+                </Switch>
+            </HashRouter>
+    );
 }
 
 export default App;
