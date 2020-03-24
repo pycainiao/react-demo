@@ -8,7 +8,7 @@ import DistCar from "../distCar/distCar";
 const Layout = (props) => {
     const signOut = () => {
         window.sessionStorage.clear();
-        // props.history.push('/login');
+        props.history.push('/login');
     };
     useEffect( () => {
         console.log('这是layout')

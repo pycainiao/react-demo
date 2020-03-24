@@ -13,9 +13,9 @@ class Login extends Component {
             loginType:1 // 当前操作的类型 1 登录 2 验证码登录 3 找回密码
         };
     }
-    // componentDidMount() {
-    //     console.log(this.props, 'props')
-    // }
+    componentDidMount() {
+        console.log('这是login组件')
+    }
 
     login = () => {
         window.sessionStorage.setItem('token', 'tokenValue');
