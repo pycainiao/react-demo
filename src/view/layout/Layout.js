@@ -1,14 +1,18 @@
 // 视图层
-import React from 'react';
+import React, {useEffect} from 'react';
 import style from './layout.module.scss'
 import {Link,Switch,Route} from "react-router-dom";
 import Home from "../home/home";
 import DistCar from "../distCar/distCar";
+
 const Layout = (props) => {
     const signOut = () => {
         window.sessionStorage.clear();
-        props.history.push('/login');
+        // props.history.push('/login');
     };
+    useEffect( () => {
+        console.log('这是layout')
+    })
     return (
         <div className={style['layout-main']}>
             <div className={style['layout-logon']}>头部logo

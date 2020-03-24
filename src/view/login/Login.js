@@ -19,11 +19,12 @@ class Login extends Component {
 
     login = () => {
         window.sessionStorage.setItem('token', 'tokenValue');
+        // window.location.reload();
         this.props.history.push('/');
-        window.location.reload();
+
     };
     onFinish = values => {
-        console.log(values);
+        console.log(values,'开始登录');
         this.login();
     };
     checkLogin = () => {
