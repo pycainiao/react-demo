@@ -20,5 +20,5 @@ function App() {
             </HashRouter>
     );
 }
-
+/*为什么这样写。当点击登录的时候，路由就能跳转呢。奇怪 什么时候渲染的呢*/
 export default App;
