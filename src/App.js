@@ -13,8 +13,8 @@ function App(data) {
                     {
                         mainRouterList.map((item,index) => {
                             return <Route key={index} path={item.path} exact={item.isExact} render={ (props) => {
-                                // return  !item.isAuth ? <item.component {...props}/> : (window.sessionStorage.getItem('token') ? <item.component {...props}/> : <Redirect to='/login'/>)
-                                return  !item.isAuth ? <item.component {...props}/> : (data.token ? <item.component {...props}/> : <Redirect to='/login'/>)
+                                return  !item.isAuth ? <item.component {...props}/> : (window.sessionStorage.getItem('token') ? <item.component {...props}/> : <Redirect to='/login'/>)
+                                // return  !item.isAuth ? <item.component {...props}/> : (data.token ? <item.component {...props}/> : <Redirect to='/login'/>)
                             }
                             }/>
                         })

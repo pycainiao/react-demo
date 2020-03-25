@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {AdminHandle} from '../../api/common';
-import {Table} from 'antd';
+import {Table,Tag } from 'antd';
 class DistCar extends Component {
     constructor(props) {
         super(props);
@@ -47,10 +47,13 @@ class DistCar extends Component {
     }
 
     render() {
+        const { Column } = Table;
         return (
             <div>
                 这是派发清单
-                <Table dataSource={this.state.dataList} columns={this.state.columns} />;
+                <Table dataSource={this.state.dataList}>
+                    <Column title="Age1" dataIndex="FWareHouseName" key="FWareHouseName" />
+                </Table>
             </div>
         );
     }
