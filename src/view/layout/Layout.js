@@ -13,6 +13,7 @@ const Layout = (props) => {
     const [activeRoutes,addRouteHandle] = useState([]); // 为什么不触发更新呢？  第一次
     useEffect( () => {
         console.log('这是layout')
+        console.log('更新了吗')
     });
     // 添加路由
     const addRouter = (routerParams) => {
@@ -31,7 +32,8 @@ const Layout = (props) => {
             // 添加路由
             console.log('添加了');
             activeRoutes.push(routerParams);
-            addRouteHandle(activeRoutes);
+            addRouteHandle([...activeRoutes]); /* 这里不能直接push   这样写addRouteHandle(push(activeRoutes)) 会是 undefined。因为push返回的是一个undefined。so*/
+            console.log(activeRoutes, '添加后的')
         }
     };
 

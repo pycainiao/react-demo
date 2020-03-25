@@ -6,6 +6,7 @@ import {
     Button
 } from 'antd';
 import CodeLogin from "./codeLogin";
+import { LoginHandle } from '../../api/common';
 class Login extends Component {
     constructor(props) {
         super(props);
@@ -16,16 +17,25 @@ class Login extends Component {
     componentDidMount() {
         console.log('这是login组件')
     }
-
-    login = () => {
-        window.sessionStorage.setItem('token', 'tokenValue');
-        // window.location.reload();
-        this.props.history.push('/');
-
-    };
     onFinish = values => {
         console.log(values,'开始登录');
-        this.login();
+        let postData = {
+            FAction: "LoginDefault",
+            FPhone: '18823780435',
+            FType: 2,
+            FPassword: 'e10adc3949ba59abbe56e057f20f883e'
+        };
+        LoginHandle(postData).then(res => {
+            console.log('登录结果', res)
+            if (res.Result === 200) {
+                let FTokenID = res.FObject[0].FTokenID
+                window.sessionStorage.setItem('token', FTokenID);
+                this.props.history.push('/');
+            }
+        }).catch(e => {
+            console.log(e, '错误')
+        })
+        // this.login();
     };
     checkLogin = () => {
         this.setState({
