@@ -7,6 +7,7 @@ import {
 } from 'antd';
 import CodeLogin from "./codeLogin";
 import { LoginHandle } from '../../api/common';
+import {connect} from 'react-redux';
 class Login extends Component {
     constructor(props) {
         super(props);
@@ -30,6 +31,7 @@ class Login extends Component {
             if (res.Result === 200) {
                 let FTokenID = res.FObject[0].FTokenID
                 window.sessionStorage.setItem('token', FTokenID);
+                this.props.addTokenHandle(FTokenID);
                 this.props.history.push('/');
             }
         }).catch(e => {
@@ -88,5 +90,14 @@ class Login extends Component {
         );
     }
 }
-
-export default Login;
+const mapDispatchToProps = (dispatch) => {
+        return {
+            addTokenHandle: (token) => {
+                dispatch({
+                    type:'addToken',
+                    token:token
+                })
+            }
+        }
+}
+export default connect('',mapDispatchToProps)(Login);

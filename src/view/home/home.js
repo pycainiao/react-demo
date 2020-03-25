@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import getTabHOC from '../../component/getTableHOC';
+import {connect} from 'react-redux'
 class Home extends Component {
     constructor(props) {
         super(props);
@@ -29,4 +30,9 @@ class Home extends Component {
     }
 }
 
-export default getTabHOC(Home);
+const mapStateToProps = ( state) => {
+    return {
+        token: state.token
+    }
+};
+export default connect(mapStateToProps)(getTabHOC(Home));
