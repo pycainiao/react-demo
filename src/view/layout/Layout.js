@@ -2,9 +2,10 @@
 import React, {useState,useEffect} from 'react';
 import style from './layout.module.scss'
 import {Link,Switch,Route} from "react-router-dom";
-import childrenRouters from "../../routers/childrenRouters";
+// import childrenRouters from "../../routers/childrenRouters";
 
 const Layout = (props) => {
+    console.log('layout多次吗')
     const signOut = () => {
         window.sessionStorage.clear();
         props.history.push('/login');
@@ -36,16 +37,22 @@ const Layout = (props) => {
             console.log(activeRoutes, '添加后的')
         }
     };
-
+    const beginLogin = () => {
+        window.sessionStorage.setItem('token', 'FTokenID');
+    }
     return (
         <div className={style['layout-main']}>
             <div className={style['layout-logon']}>头部logo
                 <button onClick={signOut}>退出登录</button>
+                <button onClick={beginLogin}>点击登录</button>
             </div>
+
             <div className={style['layout-content']}>
                 <div className={style['left-route']}>左侧路由
                     <Link  to='/home'>首页</Link>
                     <Link  to='/distCar'>派发清单</Link>
+                    <Link  to='/AddArticle'>新增文章</Link>
+                    <Link  to='/articles'>文章列表</Link>
                 </div>
                 <div className={style['right-main']}>
                     <div className={`${style['right-main-header']} ${style['header-route']}`}>
@@ -56,17 +63,17 @@ const Layout = (props) => {
                         }
                     </div>
                     <main className={style['right-main-content']}>主要渲染内容部分
-                        <Switch>
-                            {
-                                childrenRouters.map((item,index) => {
-                                    return <Route key={index} path={item.path} exact={item.isExact}
-                                                  render={props => {
-                                                     return <item.component addRouter={addRouter}  {...props}/>
-                                                  }
-                                                  }/>
-                                })
-                            }
-                        </Switch>
+                        {/*<Switch>*/}
+                        {/*    {*/}
+                        {/*        childrenRouters.map((item,index) => {*/}
+                        {/*            return <Route key={index} path={item.path} exact={item.isExact}*/}
+                        {/*                          render={props => {*/}
+                        {/*                             return <item.component addRouter={addRouter}  {...props}/>*/}
+                        {/*                          }*/}
+                        {/*                          }/>*/}
+                        {/*        })*/}
+                        {/*    }*/}
+                        {/*</Switch>*/}
                     </main>
                 </div>
             </div>

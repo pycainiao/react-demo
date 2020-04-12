@@ -20,10 +20,10 @@ const service = axios.create({
 service.interceptors.request.use(config => {
     NProgress.start();
     // config.data.FVersion = '1.0.0';
-    let token = window.sessionStorage.getItem('token');
-    if (token) {
-        config.data.FTokenID = token;
-    }
+    // let token = window.sessionStorage.getItem('token');
+    // if (token) {
+    //     config.data.FTokenID = token;
+    // }
     return config;
 }, error => {
     NProgress.done();

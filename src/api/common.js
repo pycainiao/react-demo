@@ -10,3 +10,9 @@ export const AdminHandle = (params) => {
         return res;
     });
 };
+/* 文章提交操作*/
+export const ArticleHandle = params => {
+    return service.post("/users/add", params).then(res => {
+        return res;
+    });
+}

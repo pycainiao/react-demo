@@ -11,32 +11,38 @@ import {connect} from 'react-redux';
 class Login extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            loginType:1 // 当前操作的类型 1 登录 2 验证码登录 3 找回密码
-        };
+        console.log('login这里呢constructor')
+        // this.state = {
+        //     loginType:1 // 当前操作的类型 1 登录 2 验证码登录 3 找回密码
+        // };
     }
     componentDidMount() {
         console.log('这是login组件')
     }
+
     onFinish = values => {
         console.log(values,'开始登录');
-        let postData = {
-            FAction: "LoginDefault",
-            FPhone: '18823780435',
-            FType: 2,
-            FPassword: 'e10adc3949ba59abbe56e057f20f883e'
-        };
-        LoginHandle(postData).then(res => {
-            console.log('登录结果', res)
-            if (res.Result === 200) {
-                let FTokenID = res.FObject[0].FTokenID
-                window.sessionStorage.setItem('token', FTokenID);
-                this.props.addTokenHandle(FTokenID);
-                this.props.history.push('/');
-            }
-        }).catch(e => {
-            console.log(e, '错误')
-        })
+        // window.sessionStorage.setItem('token', 'FTokenID');
+        // this.props.addTokenHandle('FTokenID');
+        // this.props.history.push('/');
+        // this.props.history.push('/');
+        // let postData = {
+        //     FAction: "LoginDefault",
+        //     FPhone: '18823780435',
+        //     FType: 2,
+        //     FPassword: 'e10adc3949ba59abbe56e057f20f883e'
+        // };
+        // LoginHandle(postData).then(res => {
+        //     console.log('登录结果', res)
+        //     if (res.Result === 200) {
+        //         let FTokenID = res.FObject[0].FTokenID
+        //         window.sessionStorage.setItem('token', FTokenID);
+        //         this.props.addTokenHandle(FTokenID);
+        //         this.props.history.push('/');
+        //     }
+        // }).catch(e => {
+        //     console.log(e, '错误')
+        // })
         // this.login();
     };
     checkLogin = () => {
@@ -52,41 +58,43 @@ class Login extends Component {
     };
 
     render() {
-        const validateMessages = {
-            required: '请输入手机号',
-        };
+        console.log('多次吗')
+        // const validateMessages = {
+        //     required: '请输入手机号',
+        // };
         return (
-            <div className={LoginStyle['login-main']} >
-                <div className={LoginStyle['login-main-form']}>
-                    <header className={LoginStyle['form-title']}>XXXXXXX</header>
-                    <main className={LoginStyle['form-main']}>
-                        { this.state.loginType === 1 &&
-                            <Form   labelCol={{ span: 5 }}
-                                    onFinish={this.onFinish}
-                                    validateMessages={validateMessages}
-                            >
-                                <Form.Item label="手机号"   name={['user', 'name']} rules={[{ required: true }]}>
-                                    <Input />
-                                </Form.Item>
-                                <Form.Item label="密码"   name={['user', 'email']}>
-                                    <Input />
-                                </Form.Item>
-                                <Form.Item>
-                                    <Button type="primary" htmlType="submit">
-                                        Submit
-                                    </Button>
-                                </Form.Item>
-                                <span className={LoginStyle['code-span']} onClick={this.checkLogin}>验证码登录</span>
-                            </Form>
-                        }
-                        {
-                            this.state.loginType === 2 &&
-                            <CodeLogin loginTypeChange={this.loginTypeChangeOK} login={this.login}/>
-                        }
-
-                    </main>
-                </div>
-            </div>
+            // <div className={LoginStyle['login-main']} >
+            //     <div className={LoginStyle['login-main-form']}>
+            //         <header className={LoginStyle['form-title']}>XXXXXXX</header>
+            //         <main className={LoginStyle['form-main']}>
+            //             { this.state.loginType === 1 &&
+            //                 <Form   labelCol={{ span: 5 }}
+            //                         onFinish={this.onFinish}
+            //                         validateMessages={validateMessages}
+            //                 >
+            //                     <Form.Item label="手机号"   name={['user', 'name']} rules={[{ required: true }]}>
+            //                         <Input />
+            //                     </Form.Item>
+            //                     <Form.Item label="密码"   name={['user', 'email']}>
+            //                         <Input />
+            //                     </Form.Item>
+            //                     <Form.Item>
+            //                         <Button type="primary" htmlType="submit">
+            //                             Submit
+            //                         </Button>
+            //                     </Form.Item>
+            //                     <span className={LoginStyle['code-span']} onClick={this.checkLogin}>验证码登录</span>
+            //                 </Form>
+            //             }
+            //             {
+            //                 this.state.loginType === 2 &&
+            //                 <CodeLogin loginTypeChange={this.loginTypeChangeOK} login={this.login}/>
+            //             }
+            //
+            //         </main>
+            //     </div>
+            // </div>
+            <div>这是登录页</div>
         );
     }
 }
@@ -100,4 +108,5 @@ const mapDispatchToProps = (dispatch) => {
             }
         }
 }
-export default connect('',mapDispatchToProps)(Login);
+// export default connect('',mapDispatchToProps)(Login);
+export default Login
