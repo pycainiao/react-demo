@@ -8,13 +8,16 @@ import {
 import CodeLogin from "./codeLogin";
 import { LoginHandle } from '../../api/common';
 import {connect} from 'react-redux';
+
 class Login extends Component {
+
     constructor(props) {
         super(props);
         console.log('login这里呢constructor')
-        // this.state = {
-        //     loginType:1 // 当前操作的类型 1 登录 2 验证码登录 3 找回密码
-        // };
+        this.state = {
+            loginType:1, // 当前操作的类型 1 登录 2 验证码登录 3 找回密码,
+            ceshiID: 0
+        };
     }
     componentDidMount() {
         console.log('这是login组件')
@@ -94,19 +97,19 @@ class Login extends Component {
             //         </main>
             //     </div>
             // </div>
-            <div>这是登录页</div>
+            <div >这是登录页{this.state.ceshiID}</div>
         );
     }
 }
-const mapDispatchToProps = (dispatch) => {
-        return {
-            addTokenHandle: (token) => {
-                dispatch({
-                    type:'addToken',
-                    token:token
-                })
-            }
-        }
-}
+// const mapDispatchToProps = (dispatch) => {
+//         return {
+//             addTokenHandle: (token) => {
+//                 dispatch({
+//                     type:'addToken',
+//                     token:token
+//                 })
+//             }
+//         }
+// }
 // export default connect('',mapDispatchToProps)(Login);
 export default Login

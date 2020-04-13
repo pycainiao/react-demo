@@ -1,33 +1,32 @@
+@mixin layoutWidth {
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+}
 .layout-main{
   width: 100%;
   height: 100%;
   overflow: hidden;
-  .layout-logon {
+  .layout-logo {
+    position: relative;
+    @include layoutWidth;
     height: 50px;
-    background: #55648d;
+    background: #fff;
+    border-bottom: 1px solid rgb(241, 241, 241);
+    box-shadow: 0 1px 2px 0 rgba(0,0,0,.05);;
   }
   .layout-content {
-     height: calc(100% - 50px);
-    overflow: hidden;
+      height: calc(100% - 50px);
+      overflow: hidden;
       display: flex;
-    .left-route {
-      width: 100px;
-      flex-shrink: 0;
-      background: rebeccapurple;
-    }
-    .right-main {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-    }
-    .right-main-header.header-route{
-       height: 100px;
-        background: beige;
-      flex-shrink: 0;
-    }
-    .right-main-content {
-      flex: 1;
-      background: #cccccc;
-    }
+      background: #eee;
+      .main-content {
+        flex: 1;
+        position: relative;
+        @include layoutWidth;
+        margin: 0 auto;
+        margin-top: 20px;
+        background: #fff;
+      }
   }
 }

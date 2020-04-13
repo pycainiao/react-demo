@@ -1,24 +1,29 @@
-import Layout from "../view/layout/Layout"; /*首页*/
+
 import AddArticle from "../view/article/addArticle"; // 新增文章
 import Login from "../view/login/Login";
-export const routerConfig = [
-    {
-        path:'/',
-        component:Layout,
-        auth:false,
-        isExact: true,
-        name: 'Layout'
-    },{
-        path:'/AddArticle',
-        component:AddArticle,
-        auth:true,
-        name: 'AddArticle'
-    },
+import NotFound from '../view/noFound/NotFound';
+/*
+* 子路由渲染
+* */
+export const routerChildrenConfig = [
     {
         path:'/login',
         component:Login,
         auth:false,
         isExact: true,
-        name: 'Login'
+        name: 'Login' ,
+    }, {
+        path:'/addArticle',
+        component:AddArticle,
+        auth:true,
+        isExact: true,
+        name: 'AddArticle' ,
+    },
+    {
+        path:'/404',
+        component:NotFound,
+        auth:false,
+        isExact: true,
+        name: 'NotFound' ,
     },
 ]

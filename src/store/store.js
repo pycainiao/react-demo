@@ -1,12 +1,12 @@
 import{createStore} from 'redux';
 const storeData = {
-    qweqw: '', // 用户token
+    token: '', // 用户token
 }
 const reducer = (state= storeData, action) => {
     switch (action.type) {
         case 'addToken':
             let data = {...state}
-            data.qweqw =  action.token;
+            data.token =  action.token;
             return data;
         default :
             return state;
