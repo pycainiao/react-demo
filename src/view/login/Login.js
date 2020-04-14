@@ -8,6 +8,7 @@ import {
 import CodeLogin from "./codeLogin";
 import { LoginHandle } from '../../api/common';
 import {connect} from 'react-redux';
+import { getUserInfo } from "../../api/common";
 
 class Login extends Component {
 
@@ -59,7 +60,13 @@ class Login extends Component {
             loginType:loginType
         })
     };
-
+    login = () => {
+        getUserInfo().then(res => {
+            console.log(res, '获取的结果')
+        }).catch(e => {
+            console.log(e ,'错误')
+        })
+    }
     render() {
         console.log('多次吗')
         // const validateMessages = {
@@ -97,7 +104,9 @@ class Login extends Component {
             //         </main>
             //     </div>
             // </div>
-            <div >这是登录页{this.state.ceshiID}</div>
+            <div >这是登录页
+                <button onClick={this.login}>测试登录</button>
+            </div>
         );
     }
 }

@@ -16,3 +16,9 @@ export const ArticleHandle = params => {
         return res;
     });
 }
+/*获取用户信息,测试*/
+export const getUserInfo = params => {
+    return service.get("/users").then(res => {
+        return res;
+    });
+}
