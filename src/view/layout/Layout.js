@@ -25,7 +25,7 @@ const Layout = (props) => {
     }
     return (
         <div className={style['layout-main']}>
-            <div className={style['layout-logo']}>头部logo
+            <div className={style['layout-logo']}>
                 {/*<button onClick={signOut}>退出登录</button>*/}
                 <Link  to='/'>首页</Link>
                 <Link  to='/addArticle'>新增文章</Link>

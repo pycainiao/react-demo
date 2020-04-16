@@ -5,20 +5,14 @@ import { Route,Redirect } from 'react-router-dom';
 class FrontendAuth extends Component {
     render(){
         const { location,config } = this.props;
-        console.log(this.props, '初始化的数据')
         const { pathname } = location;
         // const isLogin = localStorage.getItem('token')
         const isLogin = window.sessionStorage.getItem('token');
         console.log(isLogin, '登录了吗')
-        console.log('跳转的路由', pathname)
-
-        // 如果该路由不用进行权限校验，登录状态下登陆页除外
-        // 因为登陆后，无法跳转到登陆页
-        // 这部分代码，是为了在非登陆状态下，访问不需要权限校验的路由
         const targetRouterConfig = config.find((v) => v.path === pathname);
         console.log(targetRouterConfig, 'targetRouterConfig')
+        // 不需要校验的路由
         if(targetRouterConfig && !targetRouterConfig.auth && !isLogin){
-            console.log('这里吗不校验')
             const { component } = targetRouterConfig;
             // return <Route exact  path={pathname} component={component} />
             return <Route exact={targetRouterConfig.isExact} path={pathname} component={component} />

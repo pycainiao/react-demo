@@ -1,6 +1,5 @@
 import axios from 'axios';
 import NProgress from 'nprogress'
-// import { Message } from 'element-ui';
 /**
  * 说明
  * 成功：返回response.data
@@ -19,7 +18,6 @@ const service = axios.create({
 
 service.interceptors.request.use(config => {
     NProgress.start();
-    // config.data.FVersion = '1.0.0';
     let token = window.sessionStorage.getItem('token');
     if (token) {
         config.headers.Authorization = 'Bearer '+token;
@@ -34,17 +32,6 @@ service.interceptors.response.use(res => {
     NProgress.done();
 
     if (res.status === 200) {
-        if (res.data.Result === 104) {
-            try {
-                // Message({
-                //     showClose: true,
-                //     message: '用户信息过期,五秒后跳转到登录页面',
-                //     type: 'warning'
-                // });
-            } catch (e) {
-
-            }
-        }
         return res.data;
     } else {
         return Promise.reject(res); // 不是200 统一为报错处理 但是感觉是多余的
