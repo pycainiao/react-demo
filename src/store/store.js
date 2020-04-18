@@ -1,10 +1,10 @@
 import{createStore} from 'redux';
 const storeData = {
-    token: '', // 用户token
+    userInfo: {} // 用户信息
 }
 const reducer = (state= storeData, action) => {
     switch (action.type) {
-        case 'addToken':
+        case 'addUserInfo': // 新增用户信息
             let data = {...state}
             data.token =  action.token;
             return data;

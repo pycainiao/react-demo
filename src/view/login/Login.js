@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import LoginStyle from './login.module.scss'
-import { Form, Input, Button } from 'antd';
-import { getUserInfo } from "../../api/common";
-
+import { Form, Input, Button, message } from 'antd';
+import { login } from "../../api/common";
+import {connect} from 'react-redux'
 const layout = {
     labelCol: {
         span: 8,
@@ -23,37 +23,29 @@ class Login extends Component {
     constructor(props) {
         super(props);
         console.log('login这里呢constructor')
-        this.state = {
-            loginType:1, // 当前操作的类型 1 登录 2 验证码登录 3 找回密码,
-            ceshiID: 0
-        };
+        this.state = {};
     }
     componentDidMount() {
-        console.log('这是login组件')
+        console.log('这是login组件',this.props)
     }
-
+    // 开始登录 nga
     onFinish = values => {
         console.log(values,'开始登录');
+        login(values).then(res => {
+            console.log('登录的结果', res);
+            if (res.code === 200) {
+                window.sessionStorage.setItem('token', res.token);
+                this.props.addUserInfo(res.userInfo);
+                this.props.history.push('/')
+            } else {
+                message.warning('账号密码错误!')
+            }
+        }).catch(e => {
+            console.log('登录失败', e)
+            message.error('登录失败!');
+        })
 
     };
-    checkLogin = () => {
-        this.setState({
-            loginType:2
-        })
-    };
-    loginTypeChangeOK = (loginType) => {
-        console.log('loginType', loginType);
-        this.setState({
-            loginType:loginType
-        })
-    };
-    login = () => {
-        getUserInfo().then(res => {
-            console.log(res, '获取的结果')
-        }).catch(e => {
-            console.log(e ,'错误')
-        })
-    }
     render() {
         console.log('多次吗')
 
@@ -84,28 +76,24 @@ class Login extends Component {
                     >
                         <Input.Password  />
                     </Form.Item>
-                    <Form.Item {...tailLayout}>
-                        <Button type="primary" htmlType="submit">
-                            Submit
-                        </Button>
-                        <Button htmlType="button" >
-                            Reset
-                        </Button>
+                    <Form.Item {...tailLayout} className={'btn-main'}>
+                        <Button htmlType="button" >重置</Button>
+                        <Button type="primary" htmlType="submit">登录</Button>
                     </Form.Item>
                 </Form>
             </div>
         );
     }
 }
-// const mapDispatchToProps = (dispatch) => {
-//         return {
-//             addTokenHandle: (token) => {
-//                 dispatch({
-//                     type:'addToken',
-//                     token:token
-//                 })
-//             }
-//         }
-// }
-// export default connect('',mapDispatchToProps)(Login);
-export default Login
+const mapDispatchToProps = (dispatch) => {
+        return {
+            addUserInfo: (userInfo) => {
+                dispatch({
+                    type:'addUserInfo',
+                    token:userInfo
+                })
+            }
+        }
+}
+export default connect('',mapDispatchToProps)(Login);
+// export default Login

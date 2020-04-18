@@ -8,7 +8,7 @@ class FrontendAuth extends Component {
         const { pathname } = location;
         // const isLogin = localStorage.getItem('token')
         const isLogin = window.sessionStorage.getItem('token');
-        console.log(isLogin, '登录了吗')
+        // console.log(isLogin, '登录了吗')
         const targetRouterConfig = config.find((v) => v.path === pathname);
         console.log(targetRouterConfig, 'targetRouterConfig')
         // 不需要校验的路由

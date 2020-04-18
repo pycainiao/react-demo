@@ -4,7 +4,7 @@ module.exports = function(app) {
         '/web',
         createProxyMiddleware({
             // target: 'http://183.2.181.238:32097/web', //
-            target: 'http://127.0.0.1:8088/api/v1', //
+            target: 'http://134.175.88.138:8088/api/v1', //
             changeOrigin: true,
             pathRewrite: {
                 '^/web': '/'
