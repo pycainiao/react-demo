@@ -12,6 +12,7 @@
     "braft-editor": "^2.3.9",
     "braft-extensions": "^0.1.0",
     "customize-cra": "^0.9.1",
+    "dayjs": "^1.8.24",
     "draft-js-prism": "^1.0.6",
     "http-proxy-middleware": "^1.0.3",
     "node-sass": "^4.13.1",

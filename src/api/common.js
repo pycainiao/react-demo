@@ -19,3 +19,9 @@ export const login = params => {
         return res;
     });
 }
+// 获取文章列表
+export const getArticles = params => {
+    return service.get('/articles',params).then(res => {
+        return res;
+    });
+}

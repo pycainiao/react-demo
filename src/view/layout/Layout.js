@@ -5,23 +5,39 @@ import {Link,Switch, useHistory} from "react-router-dom";
 import { routerChildrenConfig } from '../../routers/routers';
 import FrontendAuth from '../../component/FrontendAuth';
 import {connect} from 'react-redux';
-
+import BaseArticlesList from '../../component/BaseArticlesList';
+import {getArticles} from '../../api/common';
+import dayjs from 'dayjs';
 const Layout = (props) => {
     console.log('layout多次吗',props)
     const history = useHistory();
-    const signOut = () => {
-        window.sessionStorage.clear();
-        getToken('')
-        history.push('/'); // 跳转首页
-    };
-    const [token,getToken] = useState(props.token);
+    const isHome = history.location.pathname === '/'; // 是否是首页
+
+    const [articleList, addArticleList] = useState([])
     useEffect( () => {
-        console.log('这是layout')
-    });
-    const beginLogin = () => {
-        window.sessionStorage.setItem('token', 'FTokenID');
-        getToken('FTokenID')
-        props.addTokenHandle('FTokenID')
+        console.log('更新了')
+        console.log('这是layout',history.location.pathname);
+        isHome && getArticlesHandle();
+    },[isHome]); // 只在路由变化的时候,渲染
+
+    const getArticlesHandle = () => {
+        getArticles().then(res => {
+            console.log(res, '文章列表');
+            if (res.code === 200) {
+                let data = res.data || [];
+                data.forEach(item => {
+                    item.createdTime = dayjs(item.createdAt).format('YYYY-MM-DD HH:mm:ss') // 会自动加上本地时差
+                    console.log(item.createdTime)
+                    item.updatedTime =dayjs(item.updatedAt).format('YYYY-MM-DD HH:mm:ss')
+                })
+                addArticleList(data)
+            } else {
+                addArticleList([])
+            }
+        }).catch(e => {
+            console.log(e)
+            addArticleList([])
+        })
     }
     return (
         <div className={style['layout-main']}>
@@ -29,15 +45,19 @@ const Layout = (props) => {
                 {/*<button onClick={signOut}>退出登录</button>*/}
                 <Link  to='/'>首页</Link>
                 <Link  to='/addArticle'>新增文章</Link>
-                {/*<Link  to='/login'>登录</Link>*/}
-                <button onClick={beginLogin}>登录</button>
             </div>
 
             <div className={style['layout-content']}>
-                    <main className={style['main-content']}>主要渲染内容部分
+                    <main className={style['main-content']}>
                         <Switch>
                             <FrontendAuth  config={routerChildrenConfig}/>
                         </Switch>
+                        {
+                            isHome && <div className={style['articles-list']}>
+                                <BaseArticlesList articleList={articleList}/>
+                            </div>
+                        }
+
                     </main>
             </div>
         </div>
@@ -45,18 +65,11 @@ const Layout = (props) => {
 };
 const mapStateToProps = ( state) => {
     return {
-        token: state.token
+        userInfo: state.userInfo
     }
 }
 const mapDispatchToProps = (dispatch) => {
     return {
-        addTokenHandle: (token) => {
-            console.log('添加')
-            dispatch({
-                    type:'addToken',
-                    token:token
-                })
-        }
     }
 }
 export default connect(mapStateToProps,mapDispatchToProps)(Layout)

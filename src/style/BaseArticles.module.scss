@@ -1,0 +1,26 @@
+.article-main {
+  padding:18px 24px;
+  &:not(:last-child) {
+    border-bottom: 1px solid rgba(178,186,194,.15);
+  }
+
+  .article-link {
+    display: inline-block;
+    font-size: 17px;
+    font-weight: 600;
+    line-height: 1.2;
+    color: #2e3135;
+    margin-bottom: 10px;
+    &:hover {
+      color: #2e3135;
+      text-decoration: underline;
+    }
+    &:visited {
+      color: #909090;
+    }
+  }
+  .article-time {
+    font-size: 12px;
+    color: #b2bac2;
+  }
+}
