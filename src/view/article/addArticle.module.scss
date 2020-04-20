@@ -1,0 +1,10 @@
+.add-article-main {
+   :global{
+     .ant-form-item-control-input-content {
+       text-align: right;
+     }
+     .ant-btn {
+       margin-left: 40px;
+     }
+   }
+}

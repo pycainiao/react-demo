@@ -1,16 +1,16 @@
 import React from 'react'
-import {ArticleHandle} from "../api/common";
 // 引入编辑器组件
 import BraftEditor from 'braft-editor'
 // 引入编辑器样式
 import 'braft-editor/dist/index.css'
-
+import style from '../style/brafteEdito.module.scss'
 
 
 export default class EditorDemo extends React.Component {
 
     state = {
         // 创建一个空的editorState作为初始值
+        isActive:false,// 是否获得焦点
         editorState: BraftEditor.createEditorState(null)
     }
 
@@ -34,31 +34,33 @@ export default class EditorDemo extends React.Component {
     handleEditorChange = (editorState) => {
         console.log(editorState.toHTML(), 'ed')
         this.setState({ editorState })
+        this.props.getBraftEditoValue(editorState.toHTML()) //传递文本编辑器的值
     }
-    // 提交文章操作
-    addHandle = () => {
-        let postData = {
-            title: '测试标题1',
-            content: this.state.editorState.toHTML()
-        }
-        ArticleHandle(postData).then(res => {
-            console.log('提交的结果', res);
-        }).catch(e => {
-            console.log('报错了', e);
+    onFocus = () => {
+        console.log('123123')
+        this.setState({
+            isActive: true
         })
     }
+    onBlur = () => {
+        this.setState({
+            isActive: false
+        })
+    }
+
     render () {
 
-        const { editorState } = this.state
+        const { editorState, isActive} = this.state
         return (
-            <div className="my-component">
+            <div className={[style["braft-editor-main"],isActive ? style['active']:""].join(' ')}>
                 <BraftEditor
                     id={'editor-with-code-highlighter'}
                     value={editorState}
+                    placeholder={this.props.placeholder}
                     onChange={this.handleEditorChange}
-                    onSave={this.submitContent}
+                    onFocus={this.onFocus}
+                    onBlur={this.onBlur}
                 />
-                <button onClick={this.addHandle}>提交</button>
             </div>
         )
 

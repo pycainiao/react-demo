@@ -43,8 +43,9 @@ const Layout = (props) => {
         <div className={style['layout-main']}>
             <div className={style['layout-logo']}>
                 {/*<button onClick={signOut}>退出登录</button>*/}
-                <Link  to='/'>首页</Link>
-                <Link  to='/addArticle'>新增文章</Link>
+                <div className={[style['link-item'],history.location.pathname === '/'?style['is-active']:''].join(' ')}> <Link  to='/'>首页</Link></div>
+                <div className={[style['link-item'],history.location.pathname === '/addArticle'?style['is-active']:''].join(' ')}> <Link  to='/addArticle'>新增文章</Link></div>
+
             </div>
 
             <div className={style['layout-content']}>

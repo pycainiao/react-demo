@@ -3,7 +3,7 @@ import service from '../utils/request';
 
 /* 文章提交操作*/
 export const ArticleHandle = params => {
-    return service.post("/users/add", params).then(res => {
+    return service.post("/articles/add", params).then(res => {
         return res;
     });
 }
