@@ -18,7 +18,7 @@ const Layout = (props) => {
         console.log('更新了')
         console.log('这是layout',history.location.pathname);
         isHome && getArticlesHandle();
-    },[isHome]); // 只在路由变化的时候,渲染
+    },[history.location.pathname, isHome]); // 只在路由变化的时候,渲染
 
     const getArticlesHandle = () => {
         getArticles().then(res => {

@@ -6,15 +6,14 @@ class FrontendAuth extends Component {
     render(){
         const { location,config } = this.props;
         const { pathname } = location;
-        // const isLogin = localStorage.getItem('token')
         const isLogin = window.sessionStorage.getItem('token');
-        // console.log(isLogin, '登录了吗')
-        const targetRouterConfig = config.find((v) => v.path === pathname);
-        console.log(targetRouterConfig, 'targetRouterConfig')
+        const targetRouterConfig = config.find((v) => {
+            let routerTem = pathname.split('/'); // 转成数组,只交易第二个参数,主路由是否相等['','acv'] 嵌套路由的话,是这样:['','abc','qw']
+            return ('/'+routerTem[1]) === v.path // 先这样写.目前还没有好的嵌套思路
+        });
         // 不需要校验的路由
         if(targetRouterConfig && !targetRouterConfig.auth && !isLogin){
             const { component } = targetRouterConfig;
-            // return <Route exact  path={pathname} component={component} />
             return <Route exact={targetRouterConfig.isExact} path={pathname} component={component} />
         }
         if (pathname === '/') {

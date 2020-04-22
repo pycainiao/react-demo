@@ -21,7 +21,14 @@ export const login = params => {
 }
 // 获取文章列表
 export const getArticles = params => {
+    console.log('params',params)
     return service.get('/articles',params).then(res => {
         return res;
     });
+}
+// 获取单个文章详情
+export const getOneArticle = id => {
+    return service.get(`/articles/${id}`).then(res => {
+        return res;
+    })
 }
