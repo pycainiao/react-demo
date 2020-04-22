@@ -12,7 +12,7 @@ import NProgress from 'nprogress'
 */
 
 const service = axios.create({
-    baseURL: '/web', // 统一的请求前缀
+    baseURL: '/api/v1', // 统一的请求前缀
     withCredentials: true
 });
 
