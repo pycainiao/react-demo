@@ -1,6 +1,13 @@
 .article-title {
+  position: relative;
   padding: 10px;
   background: #fff;
+  :global {
+    .ant-btn.delete-btn {
+      position: absolute;
+      right: 20px;
+    }
+  }
   .title {
     font-size: 22px;
     font-weight: 700;

@@ -32,3 +32,9 @@ export const getOneArticle = id => {
         return res;
     })
 }
+// 删除单个文章
+export const deleteArticleByID = id => {
+    return service.delete(`/articles/${id}`).then(res => {
+        return res;
+    })
+}
