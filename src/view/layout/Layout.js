@@ -9,7 +9,7 @@ import BaseArticlesList from '../../component/BaseArticlesList';
 import {getArticles} from '../../api/common';
 import dayjs from 'dayjs';
 const Layout = (props) => {
-
+    console.log(props, 'props')
     const history = useHistory();
     const isHome = history.location.pathname === '/'; // 是否是首页
 
@@ -38,13 +38,25 @@ const Layout = (props) => {
             addArticleList([])
         })
     }
+    // 退出登录
+    const signOut = () => {
+        window.sessionStorage.clear();
+        props.clearState()
+        history.push('/');
+    }
     return (
         <div className={style['layout-main']}>
             <div className={style['layout-logo']}>
-                {/*<button onClick={signOut}>退出登录</button>*/}
                 <div className={[style['link-item'],history.location.pathname === '/'?style['is-active']:''].join(' ')}> <Link  to='/'>首页</Link></div>
                 <div className={[style['link-item'],history.location.pathname === '/addArticle'?style['is-active']:''].join(' ')}> <Link  to='/addArticle'>新增文章</Link></div>
-
+                {
+                    props.userInfo && props.userInfo.userName && <div className={style['user-info']}>
+                        {props.userInfo.userName}
+                        <div className={style['user-info-handle']}>
+                            <div onClick={signOut}>退出</div>
+                        </div>
+                    </div>
+                }
             </div>
             <div className={style['layout-content']}>
                     <main className={style['main-content']}>
@@ -63,12 +75,18 @@ const Layout = (props) => {
     );
 };
 const mapStateToProps = ( state) => {
+    console.log('state', state);
     return {
         userInfo: state.userInfo
     }
 }
 const mapDispatchToProps = (dispatch) => {
     return {
+        clearState:() => {
+            dispatch( {
+                type: 'clearState'
+            })
+        }
     }
 }
 export default connect(mapStateToProps,mapDispatchToProps)(Layout)

@@ -43,6 +43,31 @@
         }
       }
     }
+    .user-info {
+      position: absolute;
+      right: 0;
+      .user-info-handle {
+        display: none;
+        position: absolute;
+        width: 3em;
+        top: 100%;
+        left: 0;
+        transform: translateX(-10%);
+        background-color: #fff;
+        box-shadow: 0 1px 2px 0 rgba(0,0,0,.1);
+        border: 1px solid rgba(177,180,185,.45);
+        border-radius: 4px;
+        color: #71777c;
+        font-size: 16px;
+        text-align: center;
+        cursor: pointer;
+      }
+      &:hover {
+        .user-info-handle {
+          display: block;
+        }
+      }
+    }
 
   }
   .layout-content {

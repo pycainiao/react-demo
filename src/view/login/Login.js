@@ -35,7 +35,7 @@ class Login extends Component {
             console.log('登录的结果', res);
             if (res.code === 200) {
                 window.sessionStorage.setItem('token', res.token);
-                this.props.addUserInfo(res.userInfo);
+                this.props.addUserInfo({...res.userInfo});
                 this.props.history.push('/')
             } else {
                 message.warning('账号密码错误!')
@@ -46,9 +46,11 @@ class Login extends Component {
         })
 
     };
+    Reset = () => {
+        this.formRef.current.resetFields();
+    }
     render() {
         console.log('多次吗')
-
         return (
             <div className={LoginStyle['login-main']}>
                 <Form {...layout} ref={this.formRef} name="control-ref" onFinish={this.onFinish}>
@@ -77,7 +79,7 @@ class Login extends Component {
                         <Input.Password  />
                     </Form.Item>
                     <Form.Item {...tailLayout} className={'btn-main'}>
-                        <Button htmlType="button" >重置</Button>
+                        <Button htmlType="button" onClick={this.Reset} >重置</Button>
                         <Button type="primary" htmlType="submit">登录</Button>
                     </Form.Item>
                 </Form>
@@ -90,7 +92,7 @@ const mapDispatchToProps = (dispatch) => {
             addUserInfo: (userInfo) => {
                 dispatch({
                     type:'addUserInfo',
-                    token:userInfo
+                    userInfo:userInfo
                 })
             }
         }

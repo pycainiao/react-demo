@@ -5,9 +5,12 @@ const storeData = {
 const reducer = (state= storeData, action) => {
     switch (action.type) {
         case 'addUserInfo': // 新增用户信息
+            console.log(action, 'action')
             let data = {...state}
-            data.token =  action.token;
+            data.userInfo =  {...action.userInfo};
             return data;
+        case 'clearState':
+            return {}
         default :
             return state;
     }
