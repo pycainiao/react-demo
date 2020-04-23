@@ -9,13 +9,12 @@ import BaseArticlesList from '../../component/BaseArticlesList';
 import {getArticles} from '../../api/common';
 import dayjs from 'dayjs';
 const Layout = (props) => {
-    console.log('layout多次吗',props)
+
     const history = useHistory();
     const isHome = history.location.pathname === '/'; // 是否是首页
 
     const [articleList, addArticleList] = useState([])
     useEffect( () => {
-        console.log('更新了')
         console.log('这是layout',history.location.pathname);
         isHome && getArticlesHandle();
     },[history.location.pathname, isHome]); // 只在路由变化的时候,渲染
@@ -35,7 +34,7 @@ const Layout = (props) => {
                 addArticleList([])
             }
         }).catch(e => {
-            console.log(e)
+            // console.log(e)
             addArticleList([])
         })
     }
@@ -47,7 +46,6 @@ const Layout = (props) => {
                 <div className={[style['link-item'],history.location.pathname === '/addArticle'?style['is-active']:''].join(' ')}> <Link  to='/addArticle'>新增文章</Link></div>
 
             </div>
-
             <div className={style['layout-content']}>
                     <main className={style['main-content']}>
                         <Switch>

@@ -9,7 +9,6 @@ import OneArticleDetail from './OneArticleDetail';
  */
 function ArticlesDetail(props) {
     return (
-        // <div dangerouslySetInnerHTML={{__html:content}}/>
         <div>
             <Route exact={true} path={`/article/:id`}>
                 <OneArticleDetail/>

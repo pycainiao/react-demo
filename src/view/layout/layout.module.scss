@@ -55,8 +55,12 @@
         position: relative;
         @include layoutWidth;
         margin: 20px auto 0;
-        background: #fff;
+        //background: #fff;
         overflow: auto;
+      }
+      .articles-list {
+        background: #fff;
+        height: 100%;
       }
   }
 }

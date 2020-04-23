@@ -30,7 +30,7 @@ function AddArticle(props) {
         form.resetFields();
     }
     return (
-        <div>
+        <div className={style['add-article-main']}>
             <Form form={form} onFinish={handleSubmit}>
                 <Form.Item
                     name="title"
@@ -56,7 +56,7 @@ function AddArticle(props) {
                 >
                     <EditorDemo className='article-editor' getBraftEditoValue={getBraftEditoValue}   placeholder="请输入正文内容"/>
                 </Form.Item>
-                <Form.Item className={style['add-article-main']}>
+                <Form.Item className={style['add-article-btn']}>
                     <Button htmlType="button" onClick={reset}>重置</Button>
                     <Button type="primary" htmlType="submit">提交</Button>
                 </Form.Item>
