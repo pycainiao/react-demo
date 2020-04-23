@@ -35,6 +35,7 @@ class Login extends Component {
             console.log('登录的结果', res);
             if (res.code === 200) {
                 window.sessionStorage.setItem('token', res.token);
+                window.sessionStorage.setItem('userInfo', JSON.stringify(res.userInfo));
                 this.props.addUserInfo({...res.userInfo});
                 this.props.history.push('/')
             } else {

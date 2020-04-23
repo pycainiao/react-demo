@@ -10,6 +10,7 @@ import {getArticles} from '../../api/common';
 import dayjs from 'dayjs';
 const Layout = (props) => {
     console.log(props, 'props')
+    const userInfo = JSON.parse(window.sessionStorage.getItem('userInfo')) || {}
     const history = useHistory();
     const isHome = history.location.pathname === '/'; // 是否是首页
 
@@ -50,8 +51,8 @@ const Layout = (props) => {
                 <div className={[style['link-item'],history.location.pathname === '/'?style['is-active']:''].join(' ')}> <Link  to='/'>首页</Link></div>
                 <div className={[style['link-item'],history.location.pathname === '/addArticle'?style['is-active']:''].join(' ')}> <Link  to='/addArticle'>新增文章</Link></div>
                 {
-                    props.userInfo && props.userInfo.userName && <div className={style['user-info']}>
-                        {props.userInfo.userName}
+                    userInfo.userName && <div className={style['user-info']}>
+                        {userInfo.userName}
                         <div className={style['user-info-handle']}>
                             <div onClick={signOut}>退出</div>
                         </div>

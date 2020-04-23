@@ -23,7 +23,7 @@ export const routerChildrenConfig = [
     {
         path:'/article',
         component:ArticlesDetail,
-        auth:true,
+        auth:false,
         isExact: false,
         name: 'ArticlesDetail' ,
     },
