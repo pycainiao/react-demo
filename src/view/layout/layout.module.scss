@@ -7,6 +7,20 @@
   width: 100%;
   height: 100%;
   overflow: hidden;
+  .cjz-info {
+    position: fixed;
+    font-size: 30px;
+    font-weight: bolder;
+    user-select: none;
+    left: 10px;
+    writing-mode:vertical-rl;
+    background: #000;
+    color: #fff;
+    & > span {
+      color: #f7971d;
+    }
+    box-shadow: 0 0 6px #f7971d;
+  }
   .layout-logo {
     position: relative;
     display: flex;

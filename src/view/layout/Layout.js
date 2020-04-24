@@ -9,7 +9,10 @@ import BaseArticlesList from '../../component/BaseArticlesList';
 import {getArticles} from '../../api/common';
 import dayjs from 'dayjs';
 const Layout = (props) => {
-    console.log(props, 'props')
+    const userImgStyle = {
+        width:'30px',
+        height: '30px'
+    }
     const userInfo = JSON.parse(window.sessionStorage.getItem('userInfo')) || {}
     const history = useHistory();
     const isHome = history.location.pathname === '/'; // 是否是首页
@@ -47,12 +50,17 @@ const Layout = (props) => {
     }
     return (
         <div className={style['layout-main']}>
+            <header className={style['cjz-info']}>冲击钻语录<span>v0.1</span></header>
             <div className={style['layout-logo']}>
                 <div className={[style['link-item'],history.location.pathname === '/'?style['is-active']:''].join(' ')}> <Link  to='/'>首页</Link></div>
                 <div className={[style['link-item'],history.location.pathname === '/addArticle'?style['is-active']:''].join(' ')}> <Link  to='/addArticle'>新增文章</Link></div>
                 {
                     userInfo.userName && <div className={style['user-info']}>
-                        {userInfo.userName}
+                        {
+                            userInfo.userImg ? (<img style={userImgStyle} src={userInfo.userImg} alt="logo"/>) : (
+                                userInfo.userName
+                            )
+                        }
                         <div className={style['user-info-handle']}>
                             <div onClick={signOut}>退出</div>
                         </div>
