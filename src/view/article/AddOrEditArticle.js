@@ -60,7 +60,6 @@ function AddOrEditArticle(props) {
             } else{
                 message.warning('修改失败')
             }
-
         }).catch(e => {
             message.warning('修改失败')
         })

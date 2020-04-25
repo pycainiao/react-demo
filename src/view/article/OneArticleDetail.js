@@ -63,7 +63,6 @@ function OneArticleDetail(props) {
                 <div className={style['article-title']}>
                     {
                         isLogin && <BtnHandle/>
-
                     }
                     <span className={style['title']}>{articleData.title}</span>
                     <div className={style['article-info']}>
