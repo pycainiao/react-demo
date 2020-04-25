@@ -1,5 +1,5 @@
 
-import AddArticle from "../view/article/addArticle"; // 新增文章
+import AddOrEditArticle from "../view/article/AddOrEditArticle"; // 新增文章
 import Login from "../view/login/Login";
 import ArticlesDetail from '../view/article/ArticlesDetail';
 /*
@@ -15,10 +15,10 @@ export const routerChildrenConfig = [
     },
     {
         path:'/addArticle',
-        component:AddArticle,
+        component:AddOrEditArticle,
         auth:true,
         isExact: true,
-        name: 'AddArticle' ,
+        name: 'AddOrEditArticle' ,
     },
     {
         path:'/article',

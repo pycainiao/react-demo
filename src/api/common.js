@@ -38,3 +38,10 @@ export const deleteArticleByID = id => {
         return res;
     })
 }
+// 修改单个文字
+
+export const editArticleByID = (id,params) => {
+    return service.put(`/articles/${id}`, params).then(res => {
+        return res;
+    })
+}

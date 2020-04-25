@@ -7,11 +7,10 @@ import style from '../style/brafteEdito.module.scss'
 
 
 export default class EditorDemo extends React.Component {
-
     state = {
         // 创建一个空的editorState作为初始值
         isActive:false,// 是否获得焦点
-        editorState: BraftEditor.createEditorState(null)
+        editorState: BraftEditor.createEditorState(this.props.defaultContent || null)
     }
 
     async componentDidMount () {
@@ -19,8 +18,17 @@ export default class EditorDemo extends React.Component {
         // const htmlContent = await fetchEditorContent()
         // // 使用BraftEditor.createEditorState将html字符串转换为编辑器需要的editorStat
         // this.setState({
-        //     editorState: BraftEditor.createEditorState(htmlContent)
+        //     editorState: BraftEditor.createEditorState(this.props.defaultContent)
         // })
+    }
+    componentDidUpdate(prevProps, prevState, snapshot) {
+
+        if (prevProps.defaultContent !== this.props.defaultContent) {
+            console.log('马上更新??', this.props.defaultContent)
+            this.setState({
+                editorState: BraftEditor.createEditorState(this.props.defaultContent)
+            })
+        }
     }
 
     submitContent = async () => {
