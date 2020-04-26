@@ -4,7 +4,7 @@ import BraftEditor from 'braft-editor'
 // 引入编辑器样式
 import 'braft-editor/dist/index.css'
 import style from '../style/brafteEdito.module.scss'
-
+import {uploadHandle} from "../api/common";
 
 export default class EditorDemo extends React.Component {
     state = {
@@ -55,7 +55,31 @@ export default class EditorDemo extends React.Component {
             isActive: false
         })
     }
-
+    uploadFn = (param) => {
+        console.log(param, '上传的')
+        let params = new FormData();
+        params.append('file',param.file)
+        let config = {
+            headers: {'Content-Type':'multipart/form-data'}
+        }
+        uploadHandle(params,config).then(res => {
+            console.log(res, '上传结果')
+            if (res.code === 200) {
+                param.success({
+                    url:res.url
+                })
+            } else {
+                param.error({
+                    msg: res.msg || '上传失败'
+                })
+            }
+        }).catch(e => {
+            console.log(e, '上传错误了')
+            param.error({
+                msg: '上传发生错误'
+            })
+        })
+    }
     render () {
 
         const { editorState, isActive} = this.state
@@ -65,6 +89,14 @@ export default class EditorDemo extends React.Component {
                     id={'editor-with-code-highlighter'}
                     value={editorState}
                     placeholder={this.props.placeholder}
+                    media={{
+                        uploadFn:this.uploadFn,
+                        accepts: {
+                            image: 'image/png,image/jpeg,image/gif,image/webp,image/apng,image/svg',
+                            video: false,
+                            audio: false
+                        }
+                    }}
                     onChange={this.handleEditorChange}
                     onFocus={this.onFocus}
                     onBlur={this.onBlur}

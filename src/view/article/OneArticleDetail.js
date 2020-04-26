@@ -5,6 +5,7 @@ import { Button, message } from 'antd';
 import dayjs from 'dayjs';
 import style from './OneArticleDetail.module.scss'
 import AddOrEditArticle from './AddOrEditArticle';
+import 'braft-editor/dist/output.css'
 /**
  * 文章详情
  * @param props
@@ -70,7 +71,7 @@ function OneArticleDetail(props) {
                         <span>修改时间:{articleData.updatedTime}</span>
                     </div>
                 </div>
-                <div className={style['article-content']} dangerouslySetInnerHTML={{__html:articleData.content}}/>
+                <div  className={[style['article-content'],'braft-output-content'].join(' ')} dangerouslySetInnerHTML={{__html:articleData.content}}/>
             </>
         )
     }

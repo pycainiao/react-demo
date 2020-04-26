@@ -39,9 +39,15 @@ export const deleteArticleByID = id => {
     })
 }
 // 修改单个文字
-
 export const editArticleByID = (id,params) => {
     return service.put(`/articles/${id}`, params).then(res => {
+        return res;
+    })
+}
+
+// 上传图片
+export const uploadHandle = (params,config) => {
+    return service.post('/upload/file',params,config).then(res => {
         return res;
     })
 }
