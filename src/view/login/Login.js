@@ -22,7 +22,6 @@ class Login extends Component {
     formRef = React.createRef();
     constructor(props) {
         super(props);
-        console.log('login这里呢constructor')
         this.state = {};
     }
     componentDidMount() {
@@ -50,8 +49,10 @@ class Login extends Component {
     Reset = () => {
         this.formRef.current.resetFields();
     }
+    getTodoInfo = () => {
+        console.log(this.props.newtODO)
+    }
     render() {
-        console.log('多次吗')
         return (
             <div className={LoginStyle['login-main']}>
                 <Form {...layout} ref={this.formRef} name="control-ref" onFinish={this.onFinish}>
@@ -95,8 +96,18 @@ const mapDispatchToProps = (dispatch) => {
                     type:'addUserInfo',
                     userInfo:userInfo
                 })
+            },
+            getTodoInfo: () => {
+                dispatch({
+                    type:""
+                })
             }
         }
 }
-export default connect('',mapDispatchToProps)(Login);
-// export default Login
+const mapStateToProps = (state) => {
+    console.log(state.toDo, 'state的值')
+    return {
+        newtODO: state.toDo
+    }
+}
+export default connect(mapStateToProps,mapDispatchToProps)(Login);
