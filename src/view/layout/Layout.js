@@ -7,6 +7,7 @@ import FrontendAuth from '../../component/FrontendAuth';
 import {connect} from 'react-redux';
 import BaseArticlesList from '../../component/BaseArticlesList';
 import {getArticles} from '../../api/common';
+import {userLoginDis} from "../../store/reduxServer";
 import dayjs from 'dayjs';
 const Layout = (props) => {
     const userImgStyle = {
@@ -48,10 +49,17 @@ const Layout = (props) => {
         props.clearState()
         history.push('/');
     }
+    const testThunk = () => {
+        let params = {
+            name: '123'
+        }
+       props.userLoginThunk(params);
+    }
     return (
         <div className={style['layout-main']}>
             <header className={style['cjz-info']}>冲击钻语录<span>v0.1</span></header>
             <div className={style['layout-logo']}>
+                <button onClick={testThunk}>测试thunk</button>
                 <div className={[style['link-item'],history.location.pathname === '/'?style['is-active']:''].join(' ')}> <Link  to='/'>首页</Link></div>
                 <div className={[style['link-item'],history.location.pathname === '/addArticle'?style['is-active']:''].join(' ')}> <Link  to='/addArticle'>新增文章</Link></div>
                 {
@@ -95,6 +103,9 @@ const mapDispatchToProps = (dispatch) => {
             dispatch( {
                 type: 'clearState'
             })
+        },
+        userLoginThunk: (params) => {
+            dispatch(userLoginDis(params))
         }
     }
 }

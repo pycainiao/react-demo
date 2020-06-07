@@ -13,6 +13,11 @@ const userReduce = (state= storeData, action) => {
             let data = {...state}
             data.userInfo =  {...action.userInfo};
             return data;
+        case 'addThunkUserInfo':
+            console.log('thunk触发的')
+            let dataUser = {...state}
+            dataUser.userInfo =  {...action.userInfo};
+            return dataUser;
         case 'clearState':
             return {}
         default :
